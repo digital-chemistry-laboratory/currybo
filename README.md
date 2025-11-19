@@ -1,4 +1,4 @@
-![CurryBO-logo](./CurryBO-logo.svg)
+![CurryBO-logo](https://raw.githubusercontent.com/digital-chemistry-laboratory/currybo/refs/heads/main/CurryBO-logo.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-red.svg)](./LICENSE)
 [![Python Version](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python&logoColor=white)](https://www.python.org/)
 
@@ -35,7 +35,7 @@ If you are interested in using CurryBO to predict your next experiments, please 
 
 ## Citation
 
-If you use BoTier in your research, please cite the corresponding paper:
+If you use CurryBO in your research, please cite the corresponding paper:
 
 ```
 @misc{schmid_one_2025,

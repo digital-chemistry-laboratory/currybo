@@ -25,6 +25,11 @@ dependencies = [
     "botier",
 ]
 
+license = "MIT"
+license-files = ["LICENSE*"]
+readme = "README.md"
+description = "Bayesian Optimization for general parameters"
+
 [project.optional-dependencies]
 dev = [
     "black>=21.12b0",
@@ -36,7 +41,7 @@ dev = [
 currybo = "currybo.cli:cli"
 
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=77.0.3"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
