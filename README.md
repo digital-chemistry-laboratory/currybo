@@ -29,7 +29,7 @@ currybo \
 --objectives "name=[Your-target-name],abs_threshold=[Your-target-threshold],maximize=True" \
 ```
 
-If you do not want to code, please visit the [CurryBO Website](currybo.ethz.ch), where we built a web-based application so that everyone can optimize for general reaction conditions.
+If you do not want to code, please visit the [CurryBO Website](https://currybo.ethz.ch), where we built a web-based application so that everyone can optimize for general reaction conditions.
 
 If you are interested in using CurryBO to predict your next experiments, please refer to the [currybo-benchmarks repository](https://github.com/digital-chemistry-laboratory/currybo-benchmarks.git), which contains datasets to reproduce the experiments in this work.
 
