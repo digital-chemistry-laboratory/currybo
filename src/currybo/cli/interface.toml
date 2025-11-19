@@ -1,0 +1,434 @@
+#
+# This file defines the mapping between python CLI and JavaScript UI
+#
+
+#
+# Spec:
+# - arg: (py) CLI argument name
+# - name: (js) field name
+# - help: (py) mapped to argparse help message description, (js) field description
+# - type: (py) mapped to argparse type
+# - choices: (py) mapped to argparse choices, (js) <Select> options
+# - comp: (js) UI component type; [select, input, fileUpload]
+# - action: (py) mapped to argparse action
+# - default: (py) mapped to argparse default, (js) default value
+# - omit_web: (js) ignore in UI
+# - omit_core: (py) ignore in python
+# - omit_bm: (py) ignore in benchmark
+# - keys: (py) keys to accept for keyval type arguments, (js) keys to accept for keyval type arguments
+# - docs: (js) path to docs page
+#
+
+name = "currybo"
+desc = "Find general parameters in synthesis using Bayesian Optimization"
+
+#
+# IO
+#
+
+[dataset]
+arg = "dataset"
+name = "Dataset"
+help = "Dataset name (as defined in `datasets/chemistry_datasets/presets.py`)"
+type = "str"
+choices = ["Denmark", "DenmarkMOBO", "DenmarkASGP", "Cernak", "Borylation", "Deoxyfluorination", "Doyle"]
+comp = "select"
+omit_core = true
+omit_web = true
+
+[measurements]
+arg = "--measurements"
+name = "Measurements"
+help = "Measurements .csv file"
+type = "str"
+comp = "fileUpload"
+omit_bm = true
+
+[options]
+arg = "--options"
+name = "Options"
+help = "Options for substrate and condition columns"
+type = "str"
+comp = "fileUpload"
+
+[not-enhanced]
+arg = "--not-enhanced"
+name = "Not Enhanced"
+help = "Do not use enhanced data set. Defaults to False. [Currently not implemented]"
+action = "store_true"
+default = false
+omit_web = true
+omit_core = true
+omit_bm = true
+comp = "boolean"
+
+[conditions]
+arg = "--conditions"
+name = "Conditions"
+help = "Condition columns of data set, as keyval. Specify [name, type (smiles, scalar, array)], e.g. `name=Catalyst,type=smiles`" 
+default = []
+nargs = "+"
+comp = "keyval"
+omit_bm = true
+[conditions.keys]
+name = "string"
+type = "string"
+
+[substrates]
+arg = "--substrates"
+name = "Substrates"
+help = "Substrate columns that should be evaulated for generality. Specify [name, type (smiles, scalar, array)], e.g. `name=Ketone,type=smiles`"
+default = []
+nargs = "+"
+comp = "keyval"
+omit_bm = true
+[substrates.keys]
+name = "string"
+type = "string"
+
+[targets]
+arg = "--targets"
+name = "Targets"
+help = "Target columns of data set. Specify [name, type (scalar)], e.g. `name=Yield,type=scalar`"
+default = []
+nargs = "+"
+comp = "keyval"
+omit_bm = true
+[targets.keys]
+name = "string"
+type = "string"
+
+[objectives]
+arg = "--objectives"
+name = "Objectives"
+help = "Objectives for optimization. Specify [name, threshold, lower_bound, upper_bound, maximize]"
+defalut = []
+nargs = "+"
+comp = "keyval"
+[objectives.keys]
+rel_threshold = "number"
+abs_threshold = "number"
+upper_bound = "number"
+lower_bound = "number"
+maximize = "boolean"
+
+[final-objective]
+arg = "--final-objective"
+name = "Final Objective"
+help = "Objective index to optimize when all objectives reached their threshold"
+default = 0
+type = "int"
+comp = "numberInput"
+advanced = true
+
+[smoothing-factor]
+arg = "--smoothing-factor"
+name = "Smoothing Factor"
+help = "k value for HierarchyScalarizer of BoTier"
+default = 1e2
+type = "float"
+comp = "numberInput"
+advanced = true
+
+[use-botier-for-single-objective]
+arg = "--use-botier-for-single-objective"
+name = "Use BoTier for Single-Objective BO"
+help = "Whether CurryBO should use the BoTier Library for Single-Objective BO. Multi-Objective always uses BoTier."
+action = "store_true"
+default = false
+comp = "boolean"
+advanced = true
+
+[seed]
+arg = "--seed"
+name = "Seed"
+help = "Seed for RNG"
+default = 1
+comp = "numberInput"
+omit_bm = true
+type = "int"
+advanced = true
+
+[initial-seed]
+arg = "--initial-seed"
+name = "Initial Seed"
+help = "Number of data points to seed the initial run with"
+default = 3
+comp = "numberInput"
+omit_web = true
+omit_core = true
+
+#
+# COMPUTATION
+#
+
+[budget]
+arg = "--budget"
+name = "Budget"
+type = "int"
+help = "Number of iterations for a single BO campaign"
+default = 1
+comp = "numberInput"
+omit_web = true
+omit_core = true
+
+[jobs]
+arg = "--jobs"
+name = "Jobs"
+type = "int"
+help = "Number of parallel campaign runs."
+default = 1
+comp = "numberInput"
+omit_web = true
+omit_core = true
+
+[workers]
+arg = "--workers"
+name = "Workers"
+type = "int"
+help = "Number of cores to run jobs on. [WARN] CurryBO already runs in parallel, so there's rarely a need to use this!"
+default = 1
+comp = "numberInput"
+omit_web = true
+omit_core = true
+
+[samples]
+arg = "--samples"
+name = "Samples"
+type = "int"
+help = "Number of samples for dataset split"
+nargs = "+"
+comp = "list<numberInput>"
+omit_web = true
+omit_core = true
+
+
+#
+# BO STRATEGY
+#
+
+[surrogate]
+arg = "--surrogate"
+name = "Surrogate Model"
+type = "str"
+help = "Surrogate Model Type, defaults to `AdditiveStructureGP`"
+default = "AdditiveStructureGP"
+choices = ["AdditiveStructureGP", "SimpleGP"]
+comp = "select"
+advanced = true
+docs = "/docs/currybo/surrogate"
+
+[surrogate-kwargs]
+arg = "--surrogate-kwargs"
+name = "Arguments to Surrogate Model"
+type = "str"
+help = "Configure your Surrogate model with this. Options in Documentation."
+default = ""
+comp = "keyval"
+advanced = true
+docs = "/docs/currybo/surrogate"
+
+[kernel]
+arg = "--kernel"
+name = "Kernel"
+type = "str"
+default = "TanimotoKernel"
+help = "Covariance Kernel for the Surrogate Model"
+choices = ["TanimotoKernel", "RBFKernel"]
+comp = "select"
+advanced = true
+docs = "/docs/currybo/kernel"
+
+[likelihood]
+arg = "--likelihood"
+name = "Likelihood"
+type = "str"
+help = "Likelihood"
+default = "GaussianLikelihood"
+choices = ["GaussianLikelihood"]
+comp = "select"
+advanced = true
+docs = "/docs/currybo/likelihood"
+
+[x-utility]
+arg = "--x-utility"
+name = "X Utility"
+type = "str"
+help = "Utility function Type for x. Defaults to QuantileUtility"
+default = "QuantileUtility"
+choices = ["Random", "SimpleRegret", "UncertaintyUtility", "QuantileUtility", "QuantitativeImprovement", "QualitativeImprovement"]
+comp = "select"
+advanced = true
+docs = "/docs/currybo/acquisition"
+
+[x-utility-kwargs]
+arg = "--x-utility-kwargs"
+name = "X Utility Kwargs"
+type = "str"
+help = "Arguments to pass to the x utility, as a keyval string"
+default = ""
+comp = "keyval"
+advanced = true
+
+[w-utility]
+arg = "--w-utility"
+name = "W Utility"
+type = "str"
+help = "Utility function Type for w. Defaults to UncertaintyUtility"
+default = "UncertaintyUtility"
+choices = ["Random", "SimpleRegret", "UncertaintyUtility", "QuantileUtility"]
+comp = "select"
+advanced = true
+docs = "/docs/currybo/acquisition"
+
+[w-utility-kwargs]
+arg = "--w-utility-kwargs"
+name = "W Utility Kwargs"
+type = "str"
+help = "Arguments to pass to the w utility, as a keyval string"
+default = ""
+comp = "keyval"
+advanced = true
+
+[utility]
+arg = "--utility"
+name = "Utility"
+type = "str"
+help = "Utility function for Joint Acquisitions"
+default = "QuantileUtility"
+choices = ["Random", "SimpleRegret", "UncertaintyUtility", "QuantileUtility", "QuantitativeImprovement", "QualitativeImprovement"]
+comp = "select"
+advanced = true
+docs = "/docs/currybo/acquisition"
+
+[utility-kwargs]
+arg = "--utility-kwargs"
+name = "Utility Kwargs"
+type = "str"
+help = "Arguments to pass to the utility, as a keyval string"
+default = ""
+comp = "keyval"
+advanced = true
+
+
+[acquisition]
+arg = "--acquisition"
+name = "Acquisition Strategy"
+type = "str"
+help = "Acquisition Strategy, defaults to `SequentialAcquisition`"
+default = "SequentialAcquisition"
+choices = ["SequentialAcquisition", "SequentialLookaheadAcquisition", "JointLookaheadAcquisition"]
+comp = "select"
+advanced = true
+docs = "/docs/currybo/acquisition"
+
+[aggregation]
+arg = "--aggregation"
+name = "Aggregation Function"
+type = "str"
+help = "Aggregation Function, defaults to `Mean`"
+default = "Mean"
+choices = ["Mean", "Sigmoid", "MSE", "Min"]
+comp = "select"
+advanced = false
+docs = "/docs/currybo/aggregation"
+
+[aggregation-kwargs]
+arg = "--aggregation-kwargs"
+name = "Arguments to Aggregation Function"
+type = "str"
+help = "Configure your Aggregation function with this. Options in Documentation."
+default = ""
+comp = "keyval"
+advanced = true
+docs = "/docs/currybo/aggregation"
+
+
+
+#
+# BATCHED BO
+#
+
+[batch-size]
+arg = "--batch-size"
+name = "Batch Size"
+type = "int"
+help = "Batch Size, defaults to 1"
+default = 1
+comp = "numberInput"
+advanced = false
+docs = "/docs/currybo/acquisition"
+
+[batch-strategy]
+arg = "--batch-strategy"
+name = "Batch Strategy"
+type = "str"
+help = "Batch Strategy, defaults to QSequentialAcquisition"
+default = "QSequentialAcquisition"
+choices = ["QSequentialAcquisition", "QProbabilityOfOptimality"]
+comp = "select"
+advanced = true
+docs = "/docs/currybo/acquisition"
+
+[qpo-num-samples]
+arg = "--qpo-num-samples"
+name = "qPO Num Samples"
+type = "int"
+default = 10
+help = "Nuber of samples for qPO"
+comp = "numberInput"
+advanced = true
+docs = "/docs/currybo/acquisition/batching_strategies/QProbabilityOfOptimality"
+
+
+#
+# UTILS
+#
+
+[verbose]
+arg = "--verbose"
+name = "Verbose"
+help = "Verbose Output"
+action = "store_true"
+default = false
+omit_web = true
+omit_core = true
+
+[silent]
+arg = "--silent"
+name = "Silent"
+help = "Do not generate any output. Useful for automated runs."
+action = "store_true"
+default = false
+omit_web = true
+omit_bm = true
+
+[json]
+arg = "--json"
+name = "JSON"
+help = "Print Output in Machine-Readable JSON format. This is currently default anyway, so we omit it."
+action = "store_true"
+default = false
+omit_core = true
+omit_web = true
+omit_bm = true
+
+#
+# EVAL COMMANDS
+#
+
+[output-dir]
+arg = "--output-dir"
+name = "Output Directory"
+help = "Specify folder to output result files to"
+default = "."
+omit_web = true
+omit_core = true
+
+[output-filename]
+arg = "--output-filename"
+name = "Output Filename"
+help = "Specify filename for output files (without extension)"
+default = ""
+omti_web = true
+omit_core = true
