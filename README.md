@@ -38,14 +38,13 @@ If you are interested in using CurryBO to predict your next experiments, please 
 If you use CurryBO in your research, please cite the corresponding paper:
 
 ```
-@misc{schmid_one_2025,
-	title = {One {Set} to {Rule} {Them} {All}: {How} to {Obtain} {General} {Chemical} {Conditions} via {Bayesian} {Optimization} over {Curried} {Functions}},
-	url = {http://arxiv.org/abs/2502.18966},
-	doi = {10.48550/arXiv.2502.18966},
-	publisher = {arXiv},
-	author = {Schmid, Stefan P. and Rajaonson, Ella Miray and Ser, Cher Tian and Haddadnia, Mohammad and Leong, Shi Xuan and Aspuru-Guzik, Alán and Kristiadi, Agustinus and Jorner, Kjell and Strieth-Kalthoff, Felix},
-	month = feb,
-	year = {2025},
-	note = {arXiv:2502.18966 [cs]},
+@misc{schmid_2026_bayesian_optimization_general_reaction,
+      title={Bayesian Optimization for General Reaction Conditions}, 
+      author={Stefan P. Schmid and Ella Miray Rajaonson and Cher Tian Ser and Mohammad Haddadnia and Shi Xuan Leong and Alán Aspuru-Guzik and Agustinus Kristiadi and Kjell Jorner and Felix Strieth-Kalthoff},
+      year={2026},
+      eprint={2502.18966},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2502.18966}, 
 }
 ```
