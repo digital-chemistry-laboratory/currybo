@@ -1,6 +1,6 @@
 [project]
 name = "currybo"
-version = "0.1.0"
+version = "0.1.1"
 requires-python = ">=3.9"
 
 authors = [
@@ -17,7 +17,7 @@ dependencies = [
     "gpytorch >= 1.11",
     "matplotlib >= 3.8.3",
     "imageio >= 2.34.0",
-    "pandas >= 2.2.1",
+    "pandas >= 2.2.1, < 3",
     "rdkit >= 2023.9.5",
     "gauche >= 0.1.6",
     "pypalettes",
