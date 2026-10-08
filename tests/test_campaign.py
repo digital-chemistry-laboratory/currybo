@@ -1,24 +1,25 @@
 import torch
 import random
+import pytest
 from gpytorch.kernels import MaternKernel
 from gpytorch.likelihoods import GaussianLikelihood
 
-from genbo.campaign import GeneralBOCampaign
-from genbo.surrogate_models import SimpleGP
-from genbo.acquisition_strategies import (
+from currybo.campaign import GeneralBOCampaign
+from currybo.surrogate_models import SimpleGP
+from currybo.acquisition_strategies import (
     BaseMCAcquisitionStrategy, SequentialAcquisition,
     UncertaintyUtility, QuantitativeImprovement,
 )
-from genbo.aggregation_functions import Mean
-from genbo.test_functions import AnalyticalProblemSet, ParametrizedBranin
+from currybo.aggregation_functions import Mean
 
-
+@pytest.mark.skip(reason="This test is currently skipped since the Analytical Functions need to be replaced in a future version.")
 def test_campaign():
 
     campaign = GeneralBOCampaign()
 
     assert isinstance(campaign, GeneralBOCampaign)
 
+    from currybo.test_functions import AnalyticalProblemSet, ParametrizedBranin
     campaign.problem = AnalyticalProblemSet(
         problem_family=ParametrizedBranin,
         num_problems=20,

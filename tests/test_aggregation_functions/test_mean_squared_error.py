@@ -1,6 +1,6 @@
 import pytest
 import torch
-from genbo.aggregation_functions import MSE
+from currybo.aggregation_functions import MSE
 
 
 @pytest.fixture

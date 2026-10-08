@@ -1,6 +1,6 @@
 import pytest
 import torch
-from genbo.acquisition_strategies.utility_function import (
+from currybo.acquisition_strategies.utility_function import (
     Random,
     SimpleRegret,
     UncertaintyUtility,

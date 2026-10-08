@@ -10,12 +10,12 @@ from gpytorch.kernels import MaternKernel
 from gpytorch.likelihoods import GaussianLikelihood
 from gpytorch.distributions import MultivariateNormal
 
-from genbo.acquisition_strategies import (
+from currybo.acquisition_strategies import (
     BaseMCAcquisitionStrategy, SequentialAcquisition,
     QuantitativeImprovement, UncertaintyUtility,
 )
-from genbo.surrogate_models import BaseSurrogate, SimpleGP
-from genbo.aggregation_functions import BaseAggregation, Mean
+from currybo.surrogate_models import BaseSurrogate, SimpleGP
+from currybo.aggregation_functions import BaseAggregation, Mean
 
 
 # Mock input tensors for testing

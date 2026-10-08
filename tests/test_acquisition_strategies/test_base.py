@@ -7,9 +7,9 @@ from botorch.posteriors.torch import TorchPosterior
 from botorch.acquisition.monte_carlo import SampleReductionProtocol
 from botorch.sampling import MCSampler
 
-from genbo.acquisition_strategies import BaseMCAcquisitionStrategy
-from genbo.aggregation_functions import BaseAggregation
-from genbo.surrogate_models import BaseSurrogate
+from currybo.acquisition_strategies import BaseMCAcquisitionStrategy
+from currybo.aggregation_functions import BaseAggregation
+from currybo.surrogate_models import BaseSurrogate
 
 
 class MockMCAcquisitionStrategy(BaseMCAcquisitionStrategy):

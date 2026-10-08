@@ -6,7 +6,7 @@ from botorch.models.transforms.input import Normalize
 from botorch.models.transforms.outcome import Standardize
 from botorch.posteriors import GPyTorchPosterior
 
-from genbo.surrogate_models import AdditiveStructureGP
+from currybo.surrogate_models import AdditiveStructureGP
 
 
 @pytest.fixture

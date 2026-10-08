@@ -1,6 +1,6 @@
 import pytest
 import torch
-from genbo.aggregation_functions import Sigmoid
+from currybo.aggregation_functions import Sigmoid
 
 
 @pytest.fixture

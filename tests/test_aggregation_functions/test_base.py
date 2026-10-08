@@ -4,7 +4,7 @@ from abc import ABCMeta, abstractmethod
 from typing import Optional
 from torch import Tensor
 
-from genbo.aggregation_functions import BaseAggregation
+from currybo.aggregation_functions import BaseAggregation
 
 
 class ConcreteAggregation(BaseAggregation):

@@ -57,4 +57,4 @@ If you use CurryBO in your research, please cite the corresponding paper:
 ## System requirements
 
 The software dependencies are given in `pyproject.toml`, with the version numbers on which it has been tested on.
-CurryBO has been executed on Mac OS (Version 15 and later), as well as Linux Ubuntu (Version 22.04). No non-standard hardware requirements are required to run CurryBO.
+CurryBO has been executed on Mac OS (Version 15 and later), as well as Linux Ubuntu (Version 22.04). No non-standard hardware is required to run CurryBO.
