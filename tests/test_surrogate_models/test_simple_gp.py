@@ -8,7 +8,7 @@ from botorch.posteriors import GPyTorchPosterior
 from gpytorch.likelihoods import GaussianLikelihood
 from gpytorch.kernels import RBFKernel, ScaleKernel
 
-from genbo.surrogate_models import SimpleGP
+from currybo.surrogate_models import SimpleGP
 
 
 @pytest.fixture

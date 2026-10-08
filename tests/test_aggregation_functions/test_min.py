@@ -1,6 +1,6 @@
 import pytest
 import torch
-from genbo.aggregation_functions import Min
+from currybo.aggregation_functions import Min
 
 
 @pytest.fixture

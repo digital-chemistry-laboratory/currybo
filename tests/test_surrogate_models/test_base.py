@@ -6,7 +6,7 @@ from botorch.models.transforms.input import InputTransform
 from botorch.models.transforms.outcome import OutcomeTransform
 from botorch.posteriors.torch import TorchPosterior
 
-from genbo.surrogate_models import BaseSurrogate
+from currybo.surrogate_models import BaseSurrogate
 
 
 class MockSurrogate(BaseSurrogate, SingleTaskGP):

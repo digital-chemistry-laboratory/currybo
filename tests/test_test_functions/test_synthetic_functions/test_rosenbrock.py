@@ -1,7 +1,7 @@
 import torch
 import random
 import numpy as np
-from genbo.test_functions import (
+from currybo.test_functions import (
     ParametrizedRosenbrock,
     ParametrizedBaseTestProblem,
 )

@@ -1,9 +1,9 @@
 import random
 import torch
 
-from genbo.test_functions.problem_set import AnalyticalProblemSet
-from genbo.test_functions.parametrizable_function import ParametrizedBaseTestProblem
-from genbo.test_functions.synthetic_functions.branin import ParametrizedBranin
+from currybo.test_functions.problem_set import AnalyticalProblemSet
+from currybo.test_functions.parametrizable_function import ParametrizedBaseTestProblem
+from currybo.test_functions.synthetic_functions.branin import ParametrizedBranin
 
 
 def test_analytical_problemset():
