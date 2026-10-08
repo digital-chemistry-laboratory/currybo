@@ -17,6 +17,8 @@ To install the package, simply:
 pip install currybo
 ```
 
+Installation takes approximately 30 seconds on a consumer-grade laptop.
+
 ## Usage
 
 If you are interested in using CurryBO to predict your experiments based on your own measurements, you can simply call
@@ -29,9 +31,12 @@ currybo \
 --objectives "name=[Your-target-name],abs_threshold=[Your-target-threshold],maximize=True" \
 ```
 
+The output will be printed to the terminal in json format and contains information on the currently estimated general optimum (which conditions and the generality outcome), as well as the points recommended for next measurement and their expected outcome.
+For a test system with 6 substrates and 20 condition combinations, runtime is approximately 2 seconds on consumer-grade hardware.
+
 If you do not want to code, please visit the [CurryBO Website](https://currybo.ethz.ch), where we built a web-based application so that everyone can optimize for general reaction conditions.
 
-If you are interested in using CurryBO to predict your next experiments, please refer to the [currybo-benchmarks repository](https://github.com/digital-chemistry-laboratory/currybo-benchmarks.git), which contains datasets to reproduce the experiments in this work.
+If you are interested in reproducing work from the paper, please refer to the [currybo-benchmarks repository](https://github.com/digital-chemistry-laboratory/currybo-benchmarks.git), which contains datasets to reproduce the experiments in this work.
 
 ## Citation
 
@@ -48,3 +53,8 @@ If you use CurryBO in your research, please cite the corresponding paper:
       url={https://arxiv.org/abs/2502.18966}, 
 }
 ```
+
+## System requirements
+
+The software dependencies are given in `pyproject.toml`, with the version numbers on which it has been tested on.
+CurryBO has been executed on Mac OS (Version 15 and later), as well as Linux Ubuntu (Version 22.04). No non-standard hardware requirements are required to run CurryBO.
