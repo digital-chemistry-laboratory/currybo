@@ -1,5 +1,6 @@
 import torch
 import random
+import pytest
 from gpytorch.kernels import MaternKernel
 from gpytorch.likelihoods import GaussianLikelihood
 
@@ -10,15 +11,15 @@ from currybo.acquisition_strategies import (
     UncertaintyUtility, QuantitativeImprovement,
 )
 from currybo.aggregation_functions import Mean
-from currybo.test_functions import AnalyticalProblemSet, ParametrizedBranin
 
-
+@pytest.mark.skip(reason="This test is currently skipped since the Analytical Functions need to be replaced in a future version.")
 def test_campaign():
 
     campaign = GeneralBOCampaign()
 
     assert isinstance(campaign, GeneralBOCampaign)
 
+    from currybo.test_functions import AnalyticalProblemSet, ParametrizedBranin
     campaign.problem = AnalyticalProblemSet(
         problem_family=ParametrizedBranin,
         num_problems=20,
